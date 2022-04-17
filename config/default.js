@@ -1,10 +1,11 @@
 module.exports = {
-    db: "mongodb://localhost",
-    settings: {
-        property1: "value1",
-        property2: "value2",
-        property3: "value3",
-        httpPort: 8080
+    properties: {
+        db: {
+            DATA_MONGODB_URI: "mongodb://localhost/my_db",
+        },
+        httpServer: {
+            SERVER_PORT: 8080
+        },
     },
 };
 

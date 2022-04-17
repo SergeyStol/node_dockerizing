@@ -4,7 +4,7 @@ let config;
 
 function init(configFromParent) {
     config = configFromParent;
-    mongoose.connect(config.db);
+    mongoose.connect(config.properties.db.DATA_MONGODB_URI).then(r => console.log("Connected"));
 }
 
 function saveGreeting(greeting) {

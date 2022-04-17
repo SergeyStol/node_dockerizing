@@ -17,7 +17,6 @@ function setupServer(restify) {
 }
 
 function setupServerEndpoints() {
-
     httpServer.get('/greetings', greetingsService.greetings);
     httpServer.get('/', greetingsService.greetings);
     httpServer.get('/say-hello', greetingsService.sayHello);
@@ -25,7 +24,7 @@ function setupServerEndpoints() {
 }
 
 function setupServerPort() {
-    httpServer.listen(config.get('settings.httpPort'), function () {
+    httpServer.listen(config.get('properties.httpServer.SERVER_PORT'), function () {
         console.log('%s listening at %s', httpServer.name, httpServer.url);
     });
 }

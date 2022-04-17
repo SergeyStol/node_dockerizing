@@ -13,7 +13,7 @@ function greetings(req, res, next) {
 
 function addGreeting(req, res, next) {
     greetingsRepository.saveGreeting(req.body.text);
-    res.send(config.get('settings'));
+    res.send(config.get('properties'));
     return next();
 }
 
