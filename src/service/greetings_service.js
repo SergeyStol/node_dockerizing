@@ -1,10 +1,18 @@
 let config;
+let greetingsRepository;
 
-function setup(conf) {
-    config = conf;
+function init(configFromParent, greetingsRepositoryParent) {
+    config = configFromParent;
+    greetingsRepository = greetingsRepositoryParent;
 }
 
 function greetings(req, res, next) {
+    res.send(config.get('settings'));
+    return next();
+}
+
+function addGreeting(req, res, next) {
+    greetingsRepository.saveGreeting(req.body.text);
     res.send(config.get('settings'));
     return next();
 }
@@ -15,7 +23,8 @@ function sayHello(req, res, next) {
 }
 
 module.exports = {
-    setup: setup,
+    init: init,
     greetings: greetings,
-    sayHello: sayHello
+    sayHello: sayHello,
+    addGreeting: addGreeting
 }

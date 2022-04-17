@@ -3,18 +3,25 @@ let config,
     httpServer,
     greetingsService;
 
-function setup(conf, greetingsServiceParent) {
-    config = conf;
+function init(configFromParent, greetingsServiceParent) {
+    config = configFromParent;
     greetingsService = greetingsServiceParent;
-    httpServer = restify.createServer({});
+    httpServer = setupServer(restify);
     setupServerEndpoints();
     setupServerPort()
 }
+function setupServer(restify) {
+    const httpServer = restify.createServer({});
+    httpServer.use(restify.plugins.bodyParser());
+    return httpServer;
+}
 
 function setupServerEndpoints() {
+
     httpServer.get('/greetings', greetingsService.greetings);
     httpServer.get('/', greetingsService.greetings);
     httpServer.get('/say-hello', greetingsService.sayHello);
+    httpServer.post('/greeting', greetingsService.addGreeting);
 }
 
 function setupServerPort() {
@@ -24,5 +31,5 @@ function setupServerPort() {
 }
 
 module.exports = {
-    setup: setup
+    init: init
 }

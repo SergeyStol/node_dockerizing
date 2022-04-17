@@ -1,4 +1,5 @@
 module.exports = {
+    db: "mongodb://localhost",
     settings: {
         property1: "value1",
         property2: "value2",
