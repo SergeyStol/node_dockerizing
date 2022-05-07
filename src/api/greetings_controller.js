@@ -17,10 +17,10 @@ function setupServer(restify) {
 }
 
 function setupServerEndpoints() {
-    httpServer.get('/greetings', greetingsService.greetings);
-    httpServer.get('/', greetingsService.greetings);
+    httpServer.get('/settings', greetingsService.settings);
+    httpServer.get('/', greetingsService.settings);
     httpServer.get('/say-hello', greetingsService.sayHello);
-    httpServer.post('/greeting', greetingsService.addGreeting);
+    httpServer.post('/json', greetingsService.addJSON);
 }
 
 function setupServerPort() {

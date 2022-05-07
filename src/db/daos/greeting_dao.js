@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
-let greetingSchema = new Schema({
-    text: String
+let jsonSchema = new Schema({
+    field1: Object
 });
 
 module.exports = {
-    greetingSchema: greetingSchema
+    jsonSchema: jsonSchema
 }

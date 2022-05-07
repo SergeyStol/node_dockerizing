@@ -6,16 +6,16 @@ function init(configFromParent, greetingsRepositoryParent) {
     greetingsRepository = greetingsRepositoryParent;
 }
 
-function greetings(req, res, next) {
-    return sendProperties(res, next);
+function settings(req, res, next) {
+    return sendSettings(res, next);
 }
 
-function addGreeting(req, res, next) {
-    greetingsRepository.saveGreeting(req.body.text);
-    return sendProperties(res, next);
+function addJSON(req, res, next) {
+    greetingsRepository.addJSON(req.body);
+    return sendSettings(res, next);
 }
 
-function sendProperties(res, next) {
+function sendSettings(res, next) {
     try {
         res.send(config.get('properties'));
     } catch (e) {
@@ -35,7 +35,7 @@ function sayHello(req, res, next) {
 
 module.exports = {
     init: init,
-    greetings: greetings,
+    settings: settings,
     sayHello: sayHello,
-    addGreeting: addGreeting
+    addJSON: addJSON
 }
