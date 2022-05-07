@@ -7,14 +7,25 @@ function init(configFromParent, greetingsRepositoryParent) {
 }
 
 function greetings(req, res, next) {
-    res.send(config.get('settings'));
-    return next();
+    return sendProperties(res, next);
 }
 
 function addGreeting(req, res, next) {
     greetingsRepository.saveGreeting(req.body.text);
-    res.send(config.get('properties'));
-    return next();
+    return sendProperties(res, next);
+}
+
+function sendProperties(res, next) {
+    try {
+        res.send(config.get('properties'));
+    } catch (e) {
+        res.setHeader('Access-Control-Allow-Origin', '*');
+        res.setHeader('Content-Type', 'application/json')
+        res.writeHead(400);
+        res.write(JSON.stringify('Something went wrong. Can\'t read \'settings\' from config'));
+        res.end();
+    }
+    return next;
 }
 
 function sayHello(req, res, next) {
