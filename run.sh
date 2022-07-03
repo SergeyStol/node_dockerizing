@@ -1,3 +1,5 @@
 #!/bin/sh
-docker build . -t stols/node-web-app --progress=plain --no-cache
-docker run -p 8080:8080 -d stols/node-web-app
+
+imageName="sergeystol/node-web-app"
+docker build . -t $imageName --progress=plain --no-cache
+docker run -p 8080:8080 -d $imageName
